@@ -9,16 +9,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinNoteEditor">
+        <receiver
+            android:name=".NoteKeeperAppWidget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/note_keeper_app_widget_info" />
+        </receiver>
+        
+        <service android:name=".AppWidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
         <activity
-            android:name=".MainActivity"
+            android:name=".NoteQuickViewActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:taskAffinity="" />
+        <activity
+            android:name=".ItemsActivity"
             android:exported="true"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_activity_items"
             android:theme="@style/Theme.KotlinNoteEditor.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NoteActivity"
+            android:exported="false"
+            android:label="Edit Note"
+            android:parentActivityName=".ItemsActivity"
+            android:theme="@style/Theme.KotlinNoteEditor.NoActionBar" />
+        <activity
+            android:name=".NotelistActivity"
+            android:exported="true"
+            android:label="Notekeeper"
+            android:theme="@style/Theme.KotlinNoteEditor.NoActionBar" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

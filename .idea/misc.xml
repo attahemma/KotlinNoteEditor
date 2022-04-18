@@ -3,8 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Smart Dell/.gradle/caches/transforms-3/7d41cd8a5d82fd57439fdb8fd3dd7719/transformed/appcompat-1.4.1/res/layout/abc_activity_chooser_view_list_item.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/drawable/add_icon.xml" value="0.2215" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/drawable/back_arrow.xml" value="0.146" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/drawable/drawer_img_bg.xml" value="0.2215" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/drawable/front_arrow.xml" value="0.146" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/drawable/side_nav_bar.xml" value="0.2215" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/activity_items.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/activity_main.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/activity_note.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/activity_note_quick_view.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/activity_notelist.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/app_bar_items.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/color_selector.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/content_items.xml" value="0.17990654205607476" />
         <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/content_main.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/courselist_item.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/fragment_gallery.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/fragment_home.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/fragment_slideshow.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/nav_header_items.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/note_keeper_app_widget.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/notelist_item.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/layout/widget_note_list_item.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/menu/activity_main_drawer.xml" value="0.264" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/menu/items.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AndroidStudioProjects/KotlinNoteEditor/app/src/main/res/menu/menu_main.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/Smart Dell/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.24166666666666667" />
       </map>
     </option>
   </component>
