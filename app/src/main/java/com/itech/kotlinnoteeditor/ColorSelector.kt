@@ -15,10 +15,17 @@ class ColorSelector @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val listOfColors = listOf(Color.BLUE, Color.RED, Color.GREEN)
+    private var listOfColors = listOf(Color.BLUE)
     private var selectedColorIndex = 0
 
     init {
+        val typedArray = context?.obtainStyledAttributes(
+            attrs, R.styleable.ColorSelector
+        )
+        listOfColors = typedArray?.getTextArray(R.styleable.ColorSelector_colors)!!.map {
+            Color.parseColor(it.toString())
+        }
+        typedArray.recycle()
         orientation = LinearLayout.HORIZONTAL
         val inflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         inflater.inflate(R.layout.color_selector, this)
@@ -29,7 +36,7 @@ class ColorSelector @JvmOverloads constructor(
 
         colorSelectorArrowRight.setOnClickListener { selectNextColor() }
 
-        colorEnabled.setOnCheckedChangeListener{ buttonView, isChecked -> broadcastColor(setSelectedColor()) }
+        colorEnabled.setOnCheckedChangeListener{ buttonView, isChecked -> broadcastColor() }
     }
 
     private fun selectNextColor() {
@@ -39,8 +46,22 @@ class ColorSelector @JvmOverloads constructor(
             selectedColorIndex++
         }
         selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
-        broadcastColor(setSelectedColor())
+        broadcastColor()
     }
+
+    var selectedColorValue: Int = android.R.color.transparent
+        set(value) {
+            var index = listOfColors.indexOf(value)
+            if (index == -1){
+                colorEnabled.isChecked = false
+                index = 0
+            }else{
+                colorEnabled.isChecked = true
+            }
+            selectedColorIndex = index
+            selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
+        }
+
 
     private fun selectPreviousColor() {
         if (selectedColorIndex == 0){
@@ -49,28 +70,32 @@ class ColorSelector @JvmOverloads constructor(
             selectedColorIndex--
         }
         selectedColor.setBackgroundColor(listOfColors[selectedColorIndex])
-        broadcastColor(setSelectedColor())
+        broadcastColor()
     }
 
-    private fun setSelectedColor() : Int {
-        return if (colorEnabled.isChecked)
+    private var colorSelectedListeners: ArrayList<(Int) -> Unit> = arrayListOf()
+
+    fun addListener(function: (Int) -> Unit) {
+        this.colorSelectedListeners.add(function)
+    }
+
+//    interface ColorSelectorListener {
+//        fun onColorSelected(color: Int)
+//    }
+//
+//    fun setColorSelectListener(listener: ColorSelectorListener){
+//        this.colorSelectedListener = listener
+//    }
+
+    private fun broadcastColor(){
+        val color = if (colorEnabled.isChecked)
             listOfColors[selectedColorIndex]
         else
             Color.TRANSPARENT
-    }
-
-    private var colorSelectedListener: ColorSelectorListener? = null
-
-    interface ColorSelectorListener {
-        fun onColorSelected(color: Int)
-    }
-
-    fun setColorSelectListener(listener: ColorSelectorListener){
-        this.colorSelectedListener = listener
-    }
-
-    private fun broadcastColor(color: Int){
-        this.colorSelectedListener?.onColorSelected(color)
+//        this.colorSelectedListener?.onColorSelected(color)
+        this.colorSelectedListeners.forEach { function ->
+            function(color)
+        }
     }
 
 }

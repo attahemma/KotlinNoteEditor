@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/nav_notes"
-        android:name="com.itech.kotlinnoteeditor.ui.home.HomeFragment"
+        android:name="com.itech.kotlinnoteeditor.ui.note.NoteFragment"
         android:label="@string/menu_notes"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_courses"
-        android:name="com.itech.kotlinnoteeditor.ui.gallery.CoursesFragment"
+        android:name="com.itech.kotlinnoteeditor.ui.courses.CoursesFragment"
         android:label="@string/menu_courses"
         tools:layout="@layout/fragment_gallery" />
 

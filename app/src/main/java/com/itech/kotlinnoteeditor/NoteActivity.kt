@@ -11,6 +11,7 @@ import com.itech.kotlinnoteeditor.databinding.ActivityNoteBinding
 class NoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNoteBinding
+    private lateinit var colorSelector : ColorSelector
     private var notePosition : Int = POSITION_NOT_SET
     private var noteColor : Int = Color.TRANSPARENT
 
@@ -21,7 +22,7 @@ class NoteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
+        colorSelector = binding.colorSelector
         notePosition = savedInstanceState?.getInt(NOTE_POSITION, POSITION_NOT_SET) ?:
             intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET)
 
@@ -38,14 +39,17 @@ class NoteActivity : AppCompatActivity() {
             DataManager.notes.add(NoteInfo())
             notePosition = DataManager.notes.lastIndex
         }
-        val  colorSelector = ColorSelector(this)
-        colorSelector.setColorSelectListener(
-            object : ColorSelector.ColorSelectorListener {
-                override fun onColorSelected(color: Int) {
-                    noteColor = color
-                }
-            }
-        )
+
+//        colorSelector.setColorSelectListener(
+//            object : ColorSelector.ColorSelectorListener {
+//                override fun onColorSelected(color: Int) {
+//                    noteColor = color
+//                }
+//            }
+//        )
+        colorSelector.addListener { color ->
+            noteColor = color
+        }
 //        binding.fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
@@ -57,6 +61,7 @@ class NoteActivity : AppCompatActivity() {
         binding.noteTitle.setText(noteInfo.title)
         binding.noteText.setText(noteInfo.text)
         noteColor = noteInfo.color
+        colorSelector.selectedColorValue = noteColor
 
         val currentPos: Int = DataManager.courses.values.indexOf(noteInfo.course)
         binding.spinnerCourses.setSelection(currentPos)
@@ -128,14 +133,5 @@ class NoteActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(NOTE_POSITION, notePosition)
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if(!empty()){
-            saveNote()
-        }else{
-            DataManager.notes.removeAt(DataManager.notes.size - 1)
-        }
     }
 }

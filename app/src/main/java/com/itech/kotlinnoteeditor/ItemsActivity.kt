@@ -27,6 +27,14 @@ class ItemsActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityItemsBinding
 
+    private lateinit var navController: NavController
+
+    private val navigationView: NavigationView
+        get() {
+            val navView: NavigationView = binding.navView
+            return navView
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,8 +49,8 @@ class ItemsActivity : AppCompatActivity() {
         }
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_items)
+        val navView: NavigationView = navigationView
+        navController = findNavController(R.id.nav_host_fragment_content_items)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration( navView.menu, drawerLayout)
@@ -52,9 +60,41 @@ class ItemsActivity : AppCompatActivity() {
         appBarConfiguration.fallbackOnNavigateUpListener
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navView.setNavigationItemSelectedListener(listner)
+
         registerNotificationChannel()
     }
 
+    fun handleDisplaySelection(itemId: Int){
+        when (itemId) {
+            R.id.nav_notes -> {
+                navController.navigate(itemId)
+            }
+            R.id.nav_courses -> {
+                navController.navigate(itemId)
+            }
+        }
+    }
+    var listner = NavigationView.OnNavigationItemSelectedListener {
+        when(it.itemId){
+            R.id.nav_notes,
+                R.id.nav_courses -> {
+                    handleDisplaySelection(it.itemId)
+                    true
+                }
+            R.id.send -> {
+                Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.share -> {
+                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> {
+                true
+            }
+        }
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.items, menu)
@@ -62,7 +102,7 @@ class ItemsActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_items)
+        val navController = navController
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
